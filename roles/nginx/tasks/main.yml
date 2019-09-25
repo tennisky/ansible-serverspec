@@ -1,0 +1,25 @@
+#####
+#
+# nginx/tasks/main.yml
+#
+#####
+
+---
+- name: Install nginx
+  package:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - epel-release
+    - nginx
+
+- name: Replace index.html
+  template:
+    src: indx.html.j2
+    dest: /usr/share/nginx/html/index.html
+
+- name: nginx start
+  service:
+    name: nginx
+    state: started

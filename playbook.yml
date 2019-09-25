@@ -1,0 +1,14 @@
+#####
+#
+# playbook.yml
+#
+#####
+
+---
+- name: serverspec test
+  hosts: api
+  become: yes
+  remote_user: "{{ ssh_remote_user }}"
+  roles:
+    - nginx
+    - serverspec

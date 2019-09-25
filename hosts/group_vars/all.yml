@@ -1,0 +1,10 @@
+
+#####
+#
+# hosts/group_vars/all.yml
+#
+#####
+
+---
+ssh_remote_user: centos
+ssh_private_key_file: ../.ssh/id_rsa

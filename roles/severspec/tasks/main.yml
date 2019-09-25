@@ -1,0 +1,20 @@
+#####
+#
+# serverspec/tasks/main.yml
+#
+#####
+
+---
+- name: Install ruby
+  package:
+    name: ruby
+    update_cache: yes
+    state: present
+
+- name: install serverspec
+  gem:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - rake
+    - serverspec

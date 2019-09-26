@@ -20,3 +20,19 @@
   with_items:
     - rake
     - serverspec
+
+- name: serverspec init configs
+  copy:
+    src: ../files/
+    dest: /home/centos/
+    owner: centos
+    group: centos
+    mode: '0644'
+
+- name: set spec file
+  template:
+    src: web_spec.rb.j2
+    dest: /home/centos/spec/localhost/web_spec.rb
+    owner: centos
+    group: centos
+    mode: '0644'

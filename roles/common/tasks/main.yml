@@ -20,7 +20,19 @@
   git:
     repo: 'https://github.com/sstephenson/rbenv.git'
     dest: /home/centos/.rbenv
-  ignore_errors: true
+
+- name: git clone of ruby-build
+  git:
+    repo: 'https://github.com/sstephenson/ruby-build.git'
+    dest: /home/centos/.rbenv/plugins/ruby-build
+
+- name: change user and group for .rbenc directory
+  file:
+    path: /home/centos/.rbenv
+    state: directory
+    owner: centos
+    group: centos
+    recurse: yes
 
 - name: Add file path to bash_profile
   lineinfile:
@@ -33,11 +45,4 @@
     line: eval "$(rbenv init -)"
 
 - name: reload .bash_profile
-  shell: exec $SHELL -l
-  ignore_errors: true
-
-- name: git clone of ruby-build
-  git:
-    repo: 'https://github.com/sstephenson/ruby-build.git'
-    dest: /home/centos/.rbenv/plugins/ruby-build
-  ignore_errors: true
+  shell: source /home/centos/.bash_profile

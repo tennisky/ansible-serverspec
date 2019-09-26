@@ -6,10 +6,12 @@
 
 ---
 - name: Install ruby
-  package:
-    name: ruby
-    update_cache: yes
-    state: present
+  shell: rbenv install -v 2.6.4
+  ignore_errors: true
+
+- name: set ruby version for global
+  shell: rbenv global 2.6.4
+  ignore_errors: true
 
 - name: install serverspec
   gem:

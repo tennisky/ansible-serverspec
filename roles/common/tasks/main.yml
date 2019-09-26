@@ -1,0 +1,43 @@
+#####
+#
+# common/tasks/main.yml
+#
+#####
+
+- name: Install some packages
+  package:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - bzip2
+    - gcc
+    - openssl-devel
+    - readline-devel
+    - zlib-devel
+
+- name: git clone of rbenv
+  git:
+    repo: 'https://github.com/sstephenson/rbenv.git'
+    dest: /home/centos/.rbenv
+  ignore_errors: true
+
+- name: Add file path to bash_profile
+  lineinfile:
+    path: /home/centos/.bash_profile
+    line: export PATH="$HOME/.rbenv/bin:$PATH"
+
+- name: Add rbenv init to bash_profile
+  lineinfile:
+    path: /home/centos/.bash_profile
+    line: eval "$(rbenv init -)"
+
+- name: reload .bash_profile
+  shell: exec $SHELL -l
+  ignore_errors: true
+
+- name: git clone of ruby-build
+  git:
+    repo: 'https://github.com/sstephenson/ruby-build.git'
+    dest: /home/centos/.rbenv/plugins/ruby-build
+  ignore_errors: true

@@ -10,5 +10,6 @@
   become: yes
   remote_user: "{{ ssh_remote_user }}"
   roles:
+    - common
     - nginx
     - serverspec

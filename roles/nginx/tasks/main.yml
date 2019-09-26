@@ -16,7 +16,7 @@
 
 - name: Replace index.html
   template:
-    src: indx.html.j2
+    src: index.html.j2
     dest: /usr/share/nginx/html/index.html
 
 - name: nginx start

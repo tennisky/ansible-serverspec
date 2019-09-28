@@ -55,6 +55,3 @@
     owner: centos
     group: centos
     mode: '0644'
-
-- name: reload .bash_profile
-  shell: bash -lc "source /home/centos/.bash_profile"

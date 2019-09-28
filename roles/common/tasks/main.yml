@@ -27,7 +27,7 @@
     repo: 'https://github.com/sstephenson/ruby-build.git'
     dest: /home/centos/.rbenv/plugins/ruby-build
 
-- name: change user and group for .rbenc directory
+- name: change user and group for .rbenv directory
   file:
     path: /home/centos/.rbenv
     state: directory

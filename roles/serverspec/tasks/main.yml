@@ -1,17 +1,36 @@
-#####
+L:#####
 #
 # serverspec/tasks/main.yml
 #
 #####
 
 ---
-- name: Install ruby
-  shell: rbenv install -v 2.6.4
-  ignore_errors: true
+- name: reload .bash_profile
+  shell: bash -lc "source /home/centos/.bash_profile"
 
-- name: set ruby version for global
-  shell: rbenv global 2.6.4
-  ignore_errors: true
+- name: rbenv install -v 2.6.4
+  shell: bash -lc "/home/centos/.rbenv/bin/rbenv install -v 2.6.4"
+  ignore_errors: yes
+
+- name: rbenv rehash
+  shell: bash -lc "/home/centos/.rbenv/bin/rbenv rehash"
+  ignore_errors: yes
+
+- name: rbenv global 2.6.1
+  shell: bash -lc "/home/centos/.rbenv/bin/rbenv global 2.6.1"
+  ignore_errors: yes
+
+- name: gem update --system
+  shell: bash -lc "gem update --system"
+  ignore_errors: yes
+
+#- name: install rake
+#  shell: bash -lc "gem install rake"
+#  ignore_errors: yes
+
+#- name: install serverspec
+#  shell: bash -lc "gem install serverspec"
+#  ignore_errors: yes
 
 - name: install serverspec
   gem:

@@ -5,11 +5,17 @@
 #####
 
 ---
-- name: serverspec test
+- name: preparing for nginx
   hosts: api
   become: yes
   remote_user: "{{ ssh_remote_user }}"
   roles:
     - common
     - nginx
+
+- name: preparing for serverspec
+  hosts: api
+  become: no
+  remote_user: "{{ ssh_remote_user }}"
+  roles:
     - serverspec

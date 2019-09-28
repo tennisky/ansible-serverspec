@@ -43,6 +43,3 @@
   lineinfile:
     path: /home/centos/.bash_profile
     line: eval "$(rbenv init -)"
-
-- name: reload .bash_profile
-  shell: source /home/centos/.bash_profile
